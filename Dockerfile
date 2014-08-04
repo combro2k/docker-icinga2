@@ -26,9 +26,9 @@ RUN echo "deb http://http.debian.net/debian wheezy-backports main" >> /etc/apt/s
 RUN echo "deb http://debmon.org/debmon debmon-wheezy main" >> /etc/apt/sources.list
 RUN apt-get -qq update
 
-# When apache2 is pulled in by icinga-web, it seems to be configured too late and configuration
-# of icinga-web fails. To work around this, install apache2 beforehand.
-RUN apt-get -qqy --no-install-recommends install apache2
+# When depencencies are pulled in by icinga-web, they seem to be configured too late and configuration
+# of icinga-web fails. To work around this, install dependencies beforehand.
+RUN apt-get -qqy --no-install-recommends install apache2 mysql-client
 
 # Install icinga2 and icinga-classicui.
 RUN apt-get -qqy install --no-install-recommends icinga2 icinga2-ido-mysql icinga-web icinga2-classicui nagios-plugins
