@@ -1,6 +1,18 @@
 #!/bin/bash
 set -e 
 
+if [ ! -z "$IPV6ADDR" ]; then
+	echo  $IPV6ADDR
+	ip -6 addr add "$IPV6ADDR" dev eth0
+fi
+
+sleep 2
+
+if [ ! -z "$IPV6GW" ]; then
+	echo $IPV6GW
+	ip -6 route add  default via "$IPV6GW" dev eth0
+fi
+
 if [ -z "$MYSQL_PORT_3306_TCP" ]; then
     echo >&2 'error: missing MYSQL_PORT_3306_TCP environment variable'
     echo >&2 '  Did you forget to --link some_mysql_container:mysql ?'
