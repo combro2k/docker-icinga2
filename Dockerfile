@@ -42,6 +42,8 @@ RUN icinga2-enable-feature ido-mysql
 ADD entrypoint.sh /entrypoint.sh
 RUN chmod u+x /entrypoint.sh
 
+EXPOSE 80
+
 VOLUME  ["/etc/icinga2"]
 
 # Initialize and run Supervisor
